@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>藤川予備校</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="「藤川予備校」公式サイト。中学生・高校生対象、定期テスト対策から受験指導まで。" />
+  <style>
+    :root {
+      --main: #1b73b3;
+      --accent: #f5a623;
+      --bg: #f7f9fc;
+      --text: #333;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      background: #fff;
+      border-bottom: 1px solid #e3e7ee;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .top-bar {
+      background: var(--main);
+      color: #fff;
+      font-size: 0.85rem;
+      padding: 4px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .top-bar span {
+      margin-right: 8px;
+    }
+
+    .top-bar a {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    .nav {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--main), #4bb4ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .logo-text-main {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .logo-text-sub {
+      font-size: 0.75rem;
+      color: #777;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--main);
+      transition: width 0.2s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .hero {
+      background: radial-gradient(circle at top left, #e4f2ff, #f7f9fc);
+      border-bottom: 1px solid #e3e7ee;
+    }
+
+    .hero-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 40px 16px 48px;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 32px;
+      align-items: center;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid #d0e3ff;
+      font-size: 0.8rem;
+      color: var(--main);
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-size: 2.1rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .hero-title span {
+      color: var(--main);
+    }
+
+    .hero-sub {
+      font-size: 0.98rem;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .hero-points {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .hero-point {
+      font-size: 0.85rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid #e0e6f0;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      background: var(--main);
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .btn-outline {
+      border-radius: 999px;
+      border: 1px solid var(--main);
+      color: var(--main);
+      padding: 9px 16px;
+      font-size: 0.9rem;
+      background: #fff;
+    }
+
+    .hero-note {
+      font-size: 0.8rem;
+      color: #777;
+    }
+
+    .hero-image {
+      position: relative;
+      padding: 24px;
+    }
+
+    .hero-card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+      padding: 18px 16px;
+      margin-bottom: 16px;
+    }
+
+    .hero-card-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .hero-card-body {
+      font-size: 0.8rem;
+      color: #555;
+    }
+
+    .hero-badge {
+      position: absolute;
+      right: 16px;
+      top: 16px;
+      background: var(--accent);
+      color: #fff;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    }
+
+    main {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 32px 16px 48px;
+    }
+
+    section {
+      margin-bottom: 48px;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .section-sub {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .feature-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px;
+      border: 1px solid #e3e7ee;
+    }
+
+    .feature-label {
+      font-size: 0.75rem;
+      color: var(--main);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .feature-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .feature-body {
+      font-size: 0.85rem;
+      color: #555;
+    }
+
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .course-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px;
+      border: 1px solid #e3e7ee;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .course-tag {
+      font-size: 0.75rem;
+      color: #fff;
+      background: var(--main);
+      padding: 2px 8px;
+      border-radius: 999px;
+      display: inline-block;
+    }
+
+    .course-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .course-target {
+      font-size: 0.8rem;
+      color: #777;
+    }
+
+    .course-body {
+      font-size: 0.85rem;
+      color: #555;
+      flex: 1;
+    }
+
+    .course-meta {
+      font-size: 0.8rem;
+      color: #555;
+    }
+
+    .course-meta span {
+      display: inline-block;
+      margin-right: 8px;
+    }
+
+    .results {
+      display: grid;
+      grid-template-columns: 2fr 3fr;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .results-highlight {
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px;
+      border: 1px solid #e3e7ee;
+    }
+
+    .results-number {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--main);
+      margin-bottom: 4px;
+    }
+
+    .results-label {
+      font-size: 0.85rem;
+      color: #555;
+      margin-bottom: 8px;
+    }
+
+    .results-note {
+      font-size: 0.75rem;
+      color: #888;
+    }
+
+    .results-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      font-size: 0.8rem;
+    }
+
+    .results-item {
+      background: #fff;
+      border-radius: 10px;
+      padding: 10px;
+      border: 1px solid #e3e7ee;
+    }
+
+    .results-item-title {
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .results-item-body {
+      color: #555;
+    }
+
+    .flow {
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px;
+      border: 1px solid #e3e7ee;
+    }
+
+    .flow-steps {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      font-size: 0.8rem;
+    }
+
+    .flow-step {
+      position: relative;
+      padding: 10px;
+      border-radius: 10px;
+      background: #f7f9fc;
+      border: 1px dashed #c7d4ea;
+    }
+
+    .flow-step-number {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--main);
+      margin-bottom: 4px;
+    }
+
+    .flow-step-title {
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .flow-step-body {
+      color: #555;
+    }
+
+    .contact {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .contact-form {
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px;
+      border: 1px solid #e3e7ee;
+    }
+
+    .contact-form-row {
+      margin-bottom: 10px;
+    }
+
+    .contact-form-row label {
+      display: block;
+      font-size: 0.8rem;
+      margin-bottom: 4px;
+    }
+
+    .contact-form-row input,
+    .contact-form-row select,
+    .contact-form-row textarea {
+      width: 100%;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccd3e0;
+      font-size: 0.85rem;
+      font-family: inherit;
+    }
+
+    .contact-form-row textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .contact-form-note {
+      font-size: 0.75rem;
+      color: #777;
+      margin-top: 4px;
+    }
+
+    .contact-info {
+      font-size: 0.85rem;
+    }
+
+    .contact-info-block {
+      background: #fff;
+      border-radius: 12px;
+      padding: 14px;
+      border: 1px solid #e3e7ee;
+      margin-bottom: 10px;
+    }
+
+    .contact-info-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .contact-info-body {
+      color: #555;
+    }
+
+    footer {
+      border-top: 1px solid #e3e7ee;
+      background: #fff;
+      font-size: 0.8rem;
+      color: #777;
+    }
+
+    .footer-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 12px;
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-image {
+        order: -1;
+      }
+      .features,
+      .courses-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .results {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .flow-steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .contact {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .features,
+      .courses-grid,
+      .results-list,
+      .flow-steps {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-title {
+        font-size: 1.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="top-bar">
+      <div>
+        <span>ＰＩＮ　愛知県岡崎市羽根町 1-2-3</span>
+        <span>｜</span>
+        <span></span>
+      </div>
+      <div>
+        <span>お電話でのお問い合わせ：</span>
+        <a href="tel:0564-00-0000">浅野さんのスマホ</a>
+      </div>
+    </div>
+    <nav class="nav">
+      <div class="logo">
+        <div class="logo-mark">FY</div>
+        <div>
+          <div class="logo-text-main">藤川予備校</div>
+          <div class="logo-text-sub">進学専門塾</div>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="#about">特徴</a>
+        <a href="#file:///C:/Users/judyk/Downloads/Fujikawayobiko/About.html#about">塾長挨拶</a>
+        <a href="#results">合格実績</a>
+        <a href="#contact">お問い合わせ</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-tag">
+          <span>✅</span>
+          <span>定期テスト＋入試対策に強い個別指導</span>
+        </div>
+        <h1 class="hero-title">
+          <strong>「結果にこだわる」</strong><span>進学専門塾</span>
+        </h1>
+        <p class="hero-sub">
+          藤川予備校は、地域密着で一人ひとりに合わせた指導を行う進学専門塾です。<br />
+          学校の授業フォローから難関校受験まで、専任講師が徹底サポートします。
+        </p>
+        <div class="hero-points">
+          <div class="hero-point">中・高 対応？</div>
+          <div class="hero-point">塾長がイケメン</div>
+          <div class="hero-point">定期テスト対策講座</div>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="hero-badge"><p class=feature-title>ねせさりー</p></div>
+        <div class="hero-card">
+          <div class="hero-card-title">2026年度 高校入試 合格実績</div>
+          <div class="hero-card-body">
+            のちのち更新<br />
+            公立高校 第一志望合格率 <strong>？？？％</strong>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-title">こんな悩みはありませんか？</div>
+          <div class="hero-card-body">
+            ・勉強のやり方が分からない<br />
+            ・塾に通っているのに成績が上がらない<br /><br />
+            → 一人ひとりに合わせた学習プランで解決します。
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section id="about">
+      <h2 class="section-title">藤川予備校の特徴</h2>
+      <p class="section-sub">
+        「分かる」だけで終わらせず「できる」まで徹底的にサポートする指導スタイルが私たちのこだわりです。
+      </p>
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-label">特徴 01</div>
+          <div class="feature-title">一人ひとりに合わせた個別カリキュラム</div>
+          <div class="feature-body">
+            学校の進度・目標・得意不得意を丁寧にヒアリングし、オーダーメイドの学習プランを作成します。
+            定期的な面談で、状況に応じて柔軟にカリキュラムを見直します。
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-label">特徴 02</div>
+          <div class="feature-title">定期テスト対策に強い地域密着指導</div>
+          <div class="feature-body">
+            中学校・高校の出題傾向を熟知した講師が、テスト対策・入試対策を実施。
+            過去問題や予想問題を活用し「点数が取れる」「実力ゥ～～」な勉強を身につけます。
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-label">特徴 03</div>
+          <div class="feature-title">質問しやすい環境</div>
+          <div class="feature-body">
+            授業のない日も利用できる自習室を完備。分からないところは塾長にすぐ質問できます。
+            「家では集中できない」という生徒にも好評です。
+          </div>
+        </div>
+      </div>
+    </section>
+        </div>
+        <div class="results-list">
+          <div class="results-item">
+            <div class="results-item-title">岡学　5教科合計＋24点</div>
+            <div class="results-item-body">
+              中2・男子<br />
+              月１回の通塾と自習室利用で、2学期の期末テストや岡学で大幅アップ。
+            </div>
+          </div>
+          <div class="results-item">
+            <div class="results-item-title">内申 2ランクアップ</div>
+            <div class="results-item-body">
+              中2・だれか（附属）<br />
+              苦手だった数学・英語を重点的に対策し、志望校の合格ラインに到達？
+            </div>
+          </div>
+          <div class="results-item">
+            <div class="results-item-title">岡崎高校 合格できたらいいね</div>
+            <div class="results-item-body">
+              中3・男子<br />
+              基礎固めと応用演習をバランスよく行い、第一志望に合格できたらいいね。
+            </div>
+          </div>
+          <div class="results-item">
+            <div class="results-item-title">どっか高校 合格</div>
+            <div class="results-item-body">
+              <br />
+            </div>
+          </div>
+        </div>
+      </div>
+</div>　
+  <div class="feature-card">
+          <div class="feature-label">　　</div>
+          <div class="feature-title">　　　</div>
+          <div class="feature-body">
+            　　　　　　　　　
+    </section>
+          <div class="contact-info-block">
+            <div class="contact-info-title">アクセス</div>
+            <div class="contact-info-body">
+              〒444-0000<br />
+              愛知県岡崎市藤川町　むらさきかん<br />
+              
+            </div>
+          </div>
+          <div class="contact-info-block">
+            <div class="contact-info-title">対応学校（一部）</div>
+            <div class="contact-info-body">
+              附中だけ？<br />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>© 藤川予備校 / Fujikawa Learning Center</div>
+      <div class="footer-links">
+        <a href="#">塾概要</a>
+        <a href="#">プライバシーポリシー</a>
+        <a href="#">サイトマップ</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
+```
