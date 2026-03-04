@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>シンプルクリックゲーム</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      background: #f5f5f5;
+      margin-top: 80px;
+    }
+    h1 {
+      color: #333;
+    }
+    #score {
+      font-size: 2.5rem;
+      margin: 20px 0;
+      color: #0078d4;
+    }
+    button {
+      font-size: 1.2rem;
+      padding: 10px 24px;
+      border-radius: 8px;
+      border: none;
+      background: #0078d4;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #005a9e;
+    }
+    #timer {
+      margin-top: 15px;
+      font-size: 1.1rem;
+      color: #555;
+    }
+    #message {
+      margin-top: 20px;
+      font-size: 1.3rem;
+      color: #e55353;
+    }
+  </style>
+</head>
+<body>
+  <h1>10秒クリックゲーム</h1>
+  <p>10秒間で何回クリックできるか挑戦しよう！</p>
+
+  <div id="score">0</div>
+  <button id="clickBtn" disabled>スタートを押してね</button>
+
+  <div id="timer">残り時間：10 秒</div>
+  <button id="startBtn">スタート</button>
+
+  <div id="message"></div>
+
+  <script>
+    const scoreEl = document.getElementById('score');
+    const clickBtn = document.getElementById('clickBtn');
+    const startBtn = document.getElementById('startBtn');
+    const timerEl = document.getElementById('timer');
+    const messageEl = document.getElementById('message');
+
+    let score = 0;
+    let timeLeft = 10;
+    let timerId = null;
+    let playing = false;
+
+    // クリックでスコアアップ
+    clickBtn.addEventListener('click', () => {
+      if (!playing) return;
+      score++;
+      scoreEl.textContent = score;
+    });
+
+    // スタートボタン
+    startBtn.addEventListener('click', () => {
+      if (playing) return;
+
+      // 初期化
+      score = 0;
+      timeLeft = 10;
+      playing = true;
+      scoreEl.textContent = score;
+      timerEl.textContent = `残り時間：${timeLeft} 秒`;
+      messageEl.textContent = '';
+      clickBtn.disabled = false;
+      clickBtn.textContent = 'クリック！';
+
+      // カウントダウン開始
+      timerId = setInterval(() => {
+        timeLeft--;
+        timerEl.textContent = `残り時間：${timeLeft} 秒`;
+
+        if (timeLeft <= 0) {
+          clearInterval(timerId);
+          playing = false;
+          clickBtn.disabled = true;
+          clickBtn.textContent = '終了';
+          messageEl.textContent = `結果：${score} 回クリック！`;
+        }
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>攻撃ゲーム</title>
+<style>
+  body {
+    background: #222;
+    color: white;
+    font-family: sans-serif;
+    text-align: center;
+    margin-top: 20px;
+  }
+  #game {
+    width: 500px;
+    height: 300px;
+    background: #333;
+    margin: 20px auto;
+    position: relative;
+    overflow: hidden;
+    border: 3px solid #555;
+  }
+  #enemy {
+    width: 60px;
+    height: 60px;
+    background: red;
+    border-radius: 50%;
+    position: absolute;
+    cursor: pointer;
+  }
+  #hp {
+    font-size: 1.4rem;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+
+<h1>敵をクリックして攻撃！</h1>
+<div id="hp">敵HP：10</div>
+
+<div id="game">
+  <div id="enemy"></div>
+</div>
+
+<script>
+  const enemy = document.getElementById("enemy");
+  const hpText = document.getElementById("hp");
+
+  let hp = 10;
+
+  // 敵をランダムに動かす
+  function moveEnemy() {
+    const game = document.getElementById("game");
+    const maxX = game.clientWidth - enemy.clientWidth;
+    const maxY = game.clientHeight - enemy.clientHeight;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    enemy.style.left = x + "px";
+    enemy.style.top = y + "px";
+  }
+
+  // クリックで攻撃
+  enemy.addEventListener("click", () => {
+    hp--;
+    hpText.textContent = "敵HP：" + hp;
+
+    if (hp <= 0) {
+      enemy.style.background = "gray";
+      hpText.textContent = "敵を倒した！";
+      clearInterval(moveTimer);
+    }
+  });
+
+  // 敵が動き続ける
+  const moveTimer = setInterval(moveEnemy, 600);
+  moveEnemy();
+</script>
+
+</body>
+</html>
